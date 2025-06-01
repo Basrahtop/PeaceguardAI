@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+pydantic-settings
+google-cloud-language
+google-cloud-translate
+google-cloud-speech
+python-multipart
+gradio
+requests
+soundfile
+numpy
+scipy 
+gunicorn
