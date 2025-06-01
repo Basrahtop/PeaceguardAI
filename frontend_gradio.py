@@ -7,7 +7,7 @@ import time
 from scipy.io.wavfile import write as write_wav # To save buffer as WAV bytes
 
 # Define the base URL of your FastAPI backend
-BACKEND_URL = "http://localhost:8000/api/v1"
+BACKEND_URL = "https://peaceguardai.onrender.com/api/v1"
 
 # --- Helper function to format keyword results for DataFrame ---
 def format_keywords_for_display(flagged_keywords_list):
@@ -293,7 +293,7 @@ with gr.Blocks(theme=gr.themes.Soft(primary_hue="blue", secondary_hue="orange"),
                 with gr.Column(scale=3):
                     text_input_service1 = gr.Textbox(lines=10, placeholder="Paste text here to analyze...", label="Text Input")
                     lang_hint_service1 = gr.Textbox(label="Language Hint (e.g., en, ha, yo, ig)", placeholder="Optional, e.g., 'en' for English")
-                    analyze_text_button = gr.Button("Analyze Text", variant="primary", icon="🔍")
+                    analyze_text_button = gr.Button("Analyze Text", variant="primary")
                 with gr.Column(scale=2):
                     risk_label_output_service1 = gr.Label(label="PeaceGuard AI Risk Assessment")
                     explanation_output_service1 = gr.Textbox(label="Detailed Explanation", lines=7, interactive=False)
@@ -320,7 +320,7 @@ with gr.Blocks(theme=gr.themes.Soft(primary_hue="blue", secondary_hue="orange"),
                 with gr.Column(scale=3):
                     audio_input_service2 = gr.Audio(sources=["upload"], type="filepath", label="Upload Audio File (WAV, MP3 recommended)")
                     lang_code_stt_service2 = gr.Textbox(label="Language Code for STT (e.g., en-US, ha-NG)", value="en-US")
-                    analyze_audio_button = gr.Button("Analyze Audio File", variant="primary", icon="🔊")
+                    analyze_audio_button = gr.Button("Analyze Audio File", variant="primary")
                 with gr.Column(scale=2):
                     transcript_output_service2 = gr.Textbox(label="Transcript", lines=3, interactive=False)
                     risk_label_output_service2 = gr.Label(label="PeaceGuard AI Risk (on transcript)")
@@ -408,7 +408,7 @@ with gr.Blocks(theme=gr.themes.Soft(primary_hue="blue", secondary_hue="orange"),
                     test_sms_phone_ews_tab = gr.Textbox(label="Recipient Phone Number", placeholder="+234XXXXXXXXXX")
                 with gr.Column(scale=2):
                     test_sms_message_ews_tab = gr.Textbox(label="Custom SMS Message Content", placeholder="Enter test alert message")
-            test_sms_button_ews_tab = gr.Button("Send Test SMS (Mock)", icon="✉️")
+            test_sms_button_ews_tab = gr.Button("Send Test SMS (Mock)")
             test_sms_output_ews_tab = gr.Textbox(label="SMS Send Status", interactive=False)
 
             test_sms_button_ews_tab.click(
