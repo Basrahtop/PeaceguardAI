@@ -1,0 +1,33 @@
+# Use an official Python runtime as a parent image
+FROM python:3.11-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Prevent Python from writing .pyc files to disc and force stdio unbuffering
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Install system dependencies that might be needed by frontend libraries
+# For example, ffmpeg for broader audio/video format support in Gradio,
+# and libsndfile1 for soundfile/scipy.io.wavfile
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ffmpeg libsndfile1 && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy the frontend-specific requirements file
+COPY ./frontend_requirements.txt /app/requirements.txt
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Copy your Gradio application code
+COPY ./frontend_gradio.py /app/frontend_gradio.py
+
+# Gradio will run on the port specified by the PORT environment variable provided by Render.
+# The frontend_gradio.py script is already configured to use os.getenv("PORT", 7860).
+# No EXPOSE needed here as Render handles port mapping based on $PORT.
+
+# Command to run your Gradio application
+CMD ["python", "frontend_gradio.py"]

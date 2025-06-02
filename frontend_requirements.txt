@@ -1,0 +1,7 @@
+gradio
+requests
+numpy
+scipy
+# soundfile might be needed if Gradio's gr.Audio uses it for processing certain temp files,
+# or if your interface functions directly use it. Keep it if you added it for previous steps.
+soundfile
