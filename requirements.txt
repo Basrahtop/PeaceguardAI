@@ -13,3 +13,6 @@ soundfile
 numpy
 scipy 
 gunicorn
+feedparser  # For RSS feeds
+newsapi-python # For NewsAPI.org
+nltk        # For basic NLP (tokenization, stopwords, n-grams)
